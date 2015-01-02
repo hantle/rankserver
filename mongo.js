@@ -13,8 +13,9 @@ exports.connect = function() {
 };
 
 exports.findAllRank = function(callback) {
-	Rank.find({}).sort({"point":-1}).limit(100).toArray(function(err, items) {
+	Rank.find({}).limit(100).toArray(function(err, items) {
 		if (err) console.log(err);
+		items.sort(function(a,b){return a["point"]-b["point"];});
 		callback(items);
 	});
 };
